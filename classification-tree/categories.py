@@ -5,6 +5,8 @@ class Categories:
     LANGUAGE_SCIENCE = 3
     HUMANITARIAN_SCIENCE = 4
     OTHER_SCIENCE = 5
+    MULTI_SCIENCE = 6
+    UNDEFINED = -1
 
     CATEGORY_NAMES = (
         'TECH',
@@ -13,6 +15,7 @@ class Categories:
         'LANGUAGE',
         'HUMANITARIAN',
         'OTHER',
+        'MULTI',
         'UNDEFINED'
     )
 
