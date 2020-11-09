@@ -19,7 +19,7 @@ class Tree:
             return Categories.UNDEFINED
 
         top = sorted(entity, reverse=True)
-        print(top)
+#        print(top)
         if abs(top[0] - top[1]) < self.EPS:
             return Categories.MULTI_SCIENCE
 

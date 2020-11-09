@@ -4,7 +4,7 @@ from categories import Categories
 
 
 class Parser:
-    FILENAME = 'schools.csv'
+    FILENAME = '../data/schools.csv'
 
     def __init__(self):
         pass
