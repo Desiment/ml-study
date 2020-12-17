@@ -7,7 +7,7 @@ k = 3
 tests = 10
 
 data = []
-FILENAME = 'Iris.csv'
+FILENAME = '../data/Iris.csv'
 with open(FILENAME) as file:
     reader = csv.DictReader(file)
     for row in reader:

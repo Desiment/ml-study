@@ -9,7 +9,7 @@ import pymorphy2
 import statistics
 
 STOPWORDS_PATH = "../data/stopwords.txt"
-CLUSTER_PATH = "clusters.csv"
+CLUSTER_PATH = "../data/clusters.csv"
 
 def fstmin(numbers):
     mn = float('+inf')
