@@ -2,19 +2,18 @@ import csv
 import functools
 import math
 import random
-import sys
 
-k = 20
-tests = 1
+k = 3
+tests = 10
 
 data = []
-FILENAME = 'data/iris.csv'
+FILENAME = 'Iris.csv'
 with open(FILENAME) as file:
     reader = csv.DictReader(file)
     for row in reader:
         data.append(
-            [int(row['id']), float(row['sepal_length_cm']), float(row['sepal_width_cm']),
-             float(row['petal_length_cm']), float(row['petal_width_cm']), row['class']])
+            [float(row['SepalLengthCm']), float(row['SepalWidthCm']),
+             float(row['PetalLengthCm']), float(row['PetalWidthCm']), row['Species']])
 
 
 def dist(el1, el2):
@@ -36,6 +35,7 @@ def find_knn(train, el, k):
     return sorted(res, key=functools.cmp_to_key(compare))[:k]
 
 
+# Normalization
 for i in range(1, len(data[0]) - 1):
     mn = 1 << 32
     mx = -mn
@@ -56,7 +56,7 @@ for ntest in range(tests):
     errs = 0
 
     for q in range(100):
-        ind = random.randint(0, len(data))
+        ind = random.randint(0, len(data) - 1)
         neighbours = find_knn(train, data[ind], k)
 
         classes = {}
