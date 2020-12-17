@@ -1,4 +1,5 @@
 import tensorflow as tf
+import sys
 import keras
 import numpy as np
 from keras.applications import ResNet50
@@ -23,7 +24,7 @@ resnet_settings = {
     'pooling': 'max'}
 resnet = ResNet50(**resnet_settings)
 
-img = image.load_img('../data/23.jpg',
+img = image.load_img(sys.argv[1],
                      target_size=(100, 100),
                      interpolation='bilinear')
 features = resnet.predict(np.expand_dims(image.img_to_array(img), axis=0))
