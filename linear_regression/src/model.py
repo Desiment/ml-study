@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import sklearn.linear_model as lm
+from joblib import dump
 
 import matplotlib.pyplot as plt
 
@@ -10,6 +11,8 @@ Y = data["rfactor"]
 
 reg = lm.LinearRegression()
 reg.fit(X, Y)
+
+dump(reg, '../data/linear_regression.joblib')
 
 #print(skm.score(X, Y))
 #print(reg.coef_)
