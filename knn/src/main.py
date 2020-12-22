@@ -93,5 +93,5 @@ for ntest in range(tests):
         if ans != data[ind][-1]:
             errs += 1
         total += 1
-
+        
     print('Accuracy:', 1 - (errs / total))
