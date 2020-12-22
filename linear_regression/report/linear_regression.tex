@@ -1,0 +1,91 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[russian]{babel}
+
+\usepackage{aleph-comandos}
+\usepackage{aleph-moodle}
+\usepackage{amsmath}
+\usepackage{amssymb} 
+\usepackage{marvosym}
+\usepackage{setspace}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\urlstyle{same}
+
+% Se recomienda leer la documentación de estos
+% paquetes en https://www.alephsub0.org/recursos/
+
+% -- Paquetes adicionales
+
+\title{Линейная регрессия}
+\author{Ельцов Данил, Михаил Михайлов}
+\renewcommand*\contentsname{Содержание}
+
+\usepackage[margin=1cm,]{geometry}
+\setlength{\parindent}{3em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.2}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\Large \textbf{Резюме}
+\par По датасетам с Kaggle и официальной статистики по COVID-19 в мире была построена регрессионная модель, способная по демографическим данным страны предсказать кривую развития
+пандемии в отдельно взятой стране.\\
+На вход модель принимает числовые характеристики конкретной страны и результатом работы программы являются коэффициенты логистической прямой
+\clearpage
+
+\section{Постановка задачи}
+Предсказать динамику роста новой коронавирусной инфекции в конкретной стране, основываясь на ее географических и демографических особенностях. 
+\section{Используемые данные}
+Был взят \href{https://www.kaggle.com/daniboy370/world-data-by-country-2020}{датасет}, содержащий числовые характеристики самых больших стран с Kaggle. Представляет из себя несколько таблиц одинакогового формата: \textbf{id}, \textbf{country}, \textbf{country\_code}, \textbf{feature}\\
+Также был взят \href{https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide}{датасет}, содержащий официальную статистику по развитию коронавируса в разных странах.
+\section{Описание решения}
+\subsection{Идея решения}
+В результате анализа темпов развития COVID-19 в различных странах было сделано предположение, что развитие коронавируса в целом происходит согласно логистической кривой. В следствие этого было решено построить регрессионную модель для предсказания её параметров.
+\subsection{Подготовка данных}
+Для начала необходимо было объединить все характеристики стран в один CSV-файл, что легко было сделано с помощью их трех-буквенного кода. Затем мы к каждой стране из этой таблицы сопоставили посчитанные для неё коэффициенты логистической регрессии. В результате получился файл \textbf{clear\_data.csv}, имеющий следующую структуру:
+\[(ISO-code|rfactor|Median-age|Sex-ratio|Urbanization -rate)\]
+\subsection{Вычисление коэффициентов}
+Дифференциальное уравнение процесса выглядит следующим образом
+\[\frac{dP}{dt} = rP(1-\frac{P}{K})\]
+где 
+\begin{itemize}
+    \item P - количество зараженных
+    \item r - коэффициент роста
+    \item K - поддерживающая емкость среды
+\end{itemize} 
+Поддерживающую емкость среды, как критическое значение заболевших было решено взять значение, после которого рост устремится к нулю, у нас оно предполагается равным \(0.75 * P_{max}\), где \(P_{max}\) - число жителей в данной стране.
+\subsubsection{Теоретический расчет параметров}
+После применения некоторых алгебраических операций и усреднений мы выводим формулу для расчёта коэффициента роста r
+\[r = 2 * \frac{1}{n}\sum_{i=1}^{n} \frac{dP_i}{P_i}\]
+\subsubsection{Предсказание целевой переменной}
+Для предсказания коэффициента $r$ логистической кривой конкретной страны будут использованы её следующие демографические признаки:
+\begin{itemize}
+    \item sex\_ratio
+    \item median\_age
+    \item urbanization\_rate
+\end{itemize}
+\subsection{Построение регрессионной модели}
+    После предпосчета параметров регрессии для каждой страны мы запустили обучение модели \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html}{LinearRegression} из популярной библиотеки для машинного обучения - \textbf{sklearn}, которая подобрала коэффициенты регрессионной кривой, минимизирующий средний квадрат ошибки. Мы сохранили веса модели линейной регрессии для осуществления дальнейших предсказаний с ее помощью, используя библиотеку \href{https://joblib.readthedocs.io/en/latest/}{joblib}.
+
+\section{Результаты}
+\begin{itemize}
+    \item Подборка датасета - Данил Ельцов, Михаил Михайлов
+    \item Анализ данных - Данил Ельцов, Михаил Михайлов
+    \item Построение модели - Михаил Михайлов
+    \item Отчёт - Данил Ельцов
+    \item\href{https://github.com/Desiment/ml-study/blob/main/linear_regression}{Code}
+\end{itemize}
+
+\end{document} 

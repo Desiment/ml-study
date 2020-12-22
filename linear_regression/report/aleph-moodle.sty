@@ -1,0 +1,242 @@
+%%
+%% This is file `aleph-moodle.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% aleph-moodle.dtx  (with options: `aleph-moodle')
+%% 
+%% This is a generated file.
+%% LaTeX class for typesetting books
+%% 
+%% Copyright (C) 2020 by Jonathan Ortiz <jonathan.ortiz.c347@gmail.com>
+%% 
+%% Para un mejor uso y entendimiento de la actual clase,
+%% consultar la documentación.
+%% 
+\NeedsTeXFormat{LaTeX2e}[2009/09/24]
+\ProvidesPackage{aleph-moodle}[2020/01/07 v1.0]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Opciones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Opción para borrador
+\DeclareOption{draft}{
+    \PassOptionsToPackage{draft}{moodle}}
+%%  Opciones predeterminadas ninguna
+\ProcessOptions\relax
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Paquetes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Son necesarios los siguientes paquetes para utilizar los comandos.
+\RequirePackage{moodle}
+\RequirePackage{etex}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{xcolor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Comandos de función
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Función completa
+\html@def\funcion#1#2#3#4#5{%
+    \begin{array}{r@{\,}ccl}
+        #1\colon & #2 & \longrightarrow & #3\cr
+            & #4 & \longmapsto & \displaystyle#5
+    \end{array}
+}
+%%  Función dom-img
+\html@def\func#1#2#3{%
+     #1\colon #2 \rightarrow  #3
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Conjuntos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Números naturales
+\html@def\N{\mathbb N}
+\html@def\Nbb{\mathbb N}
+%%  Números enteros
+\html@def\Z{\mathbb Z}
+\html@def\Zbb{\mathbb Z}
+%%  Números racionales
+\html@def\Q{\mathbb Q}
+\html@def\Qbb{\mathbb Q}
+%%  Números reales
+\html@def\R{\mathbb R}
+\html@def\Rbb{\mathbb R}
+\html@def\reales{\mathbb R}
+%%  Números complejos
+\html@def\C{\mathbb C}
+\html@def\Cbb{\mathbb C}
+%%  Campos
+\html@def\K{\mathbb K}
+\html@def\Kbb{\mathbb K}
+%%  Primos
+\html@def\Pbb{\mathbb P}
+%%  Polinomios
+\html@def\Pol{\mathcal P}
+%%  Matrices
+\html@def\M{\mathcal M}
+%%  Matrices 2
+\html@def\Mat#1#2{\mathbb R^{#1\times #2}}
+%%  Números irracionales
+\html@def\Ibb{\mathcal I}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Operadores
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Dominio
+\html@def\dom{\operatorname{Dom}}
+\html@def\dom{\operatorname{dom}}
+\html@def\Dom{\operatorname{Dom}}
+%%  Recorrido
+\html@def\rec{\operatorname{rec}}
+\html@def\Rec{\operatorname{Rec}}
+%%  Imagen
+\html@def\img{\operatorname{img}}
+\html@def\Img{\operatorname{Img}}
+%%  Proyección
+\html@def\proy{\operatorname{proy}}
+%%  Componente normal
+\html@def\norm{\operatorname{norm}}
+%%  Interior de un conjunto
+\html@def\inte{\operatorname{int}}
+%%  Trigonométricas
+\html@def\sin{\operatorname{\sen}}
+%%  Trigonométricas inversa
+\html@def\arccsc{\operatorname{arc csc}}
+\html@def\arccot{\operatorname{arc cot}}
+\html@def\arcsec{\operatorname{arc sec}}
+%%  Espacio generado
+\html@def\spn{\operatorname{span}}
+%%  Parte real y parte imaginaria
+\html@def\im{\operatorname{Im}}
+\html@def\re{\operatorname{Re}}
+%%  Gráfico de una función
+\html@def\graf{\operatorname{graf}}
+%%  Operador signo
+\html@def\sgn{\operatorname{sgn}}
+%%  Conjunto de valores admisible
+\html@def\CVA{\operatorname{CVA}}
+%%  Conjunto solución
+\html@def\Sol{\operatorname{Sol}}
+\html@def\sol{\operatorname{Sol}}
+%%  Operador cis (cos + i sen)
+\html@def\Cis{\operatorname{Cis}}
+\html@def\cis{\operatorname{Cis}}
+%%  Diámetro
+\html@def\diam{\operatorname{diam}}
+%%  Varianza
+\html@def\Var{\operatorname{Var}}
+%%  Traza
+\html@def\Tr{\operatorname{Tr}}
+%%  Máximo común divisor
+\html@def\mcd{\operatorname{mcd}}
+%%  Mínimo común múltiplo
+\html@def\mcm{\operatorname{mcm}}
+%%  Divergencia
+\html@def\dive{\operatorname{div}}
+%%  Rotacional
+\html@def\rot{\operatorname{rot}}
+%%  Partes de un conjunto
+\html@def\partes{\operatorname{\mathcal{P}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Operadores como comandos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Clausura de un conjunto
+\html@def\cl#1{\overline{#1}}
+%%  Norma
+\html@def\norma#1{\left\|#1\right\|}
+%%  Producto interno
+\html@def\prodinner#1#2{%
+    \left\langle{#1,\, #2}\right\rangle}
+%%  Conjugado
+\html@def\conjugate#1{\overline{#1}}
+%%  Derivada parcial
+\html@def\parcial#1#2{\dfrac{\partial #1 }{\partial #2}}
+%%  Derivada total
+\html@def\derivada#1#2{\dfrac{d #1 }{d #2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Abreviaciones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Diferencia de conjuntos pequeña
+\html@def\setminus{\smallsetminus}
+%%  Contenecia de conjuntos con igual
+\html@def\subset{\subseteq}
+\html@def\sset{\subseteq}
+%%  Conjunto vacío
+\html@def\emptyset{\varnothing}
+%%  Épsilon
+\html@def\vepsilon{\varepsilon}
+%%  Texto ``y'' con espacio
+\html@def\texty{\qquad\text{y}\qquad}
+\html@def\yds{\qquad\text{y}\qquad}
+%%  Texto ``o'' con espacio
+\html@def\texto{\qquad\text{o}\qquad}
+\html@def\ods{\qquad\text{o}\qquad}
+%%  Texto ``si y solo si'' con espacio
+\html@def\siysolosi{\quad\text{si y solo si}\quad}
+\html@def\ssi{\quad\text{si y solo si}\quad}
+%%  Grados
+\html@def\degre{^\circ}
+\html@def\grad{^\circ}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Comandos desplegados
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Límite en formato desplegado
+\html@def\dlim{\displaystyle\lim}
+\html@def\Lim{\displaystyle\lim}
+%%  Sumatoria en formato desplegado
+\html@def\dsum{\displaystyle\sum}
+\html@def\Sum{\displaystyle\sum}
+%%  Binomio en formato desplegado
+\html@def\Binom{\displaystyle\binom}
+%%  Integral en formato desplegado
+\html@def\dint{\displaystyle\int}
+\html@def\Int{\displaystyle\int}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Abreviaciones de operadores lógicos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Doble implicación
+\html@def\Di{\Longleftrightarrow}
+\html@def\dimp{\Leftrightarrow}
+\html@def\qdimp{\quad\Leftrightarrow\quad}
+%%  Implicación
+\html@def\Imp{\Longrightarrow}
+\html@def\imp{\Rightarrow}
+\html@def\qimp{\quad\Rightarrow\quad}
+%%  Conectores con espacio
+\html@def\qland{\quad \land \quad }
+\html@def\qlor{\quad \lor \quad }
+\html@def\orm{\quad \vee \quad }
+\html@def\andm{\quad \wedge \quad }
+%%  Tautología y contradicción
+\html@def\V{\mathbb{V}}
+\html@def\F{\mathbb{F}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Delimitadores
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Intervalo abierto izquierda
+\html@def\lop{\left]}
+%%  Intervalo cerrado izquierda
+\html@def\lcl{\left[}
+%%  Intervalo abierto derecha
+\html@def\rop{\right[}
+%%  Intervalo cerrado derecha
+\html@def\rcl{\right]}
+%%  Izquierda
+\html@def\l{\left}
+%%  Derecha
+\html@def\r{\right}
+%%  Intervalos
+\html@def\open#1{\left]#1\right[}
+\html@def\openl#1{\left]#1\right]}
+\html@def\openr#1{\left[#1\right[}
+\html@def\close#1{\left[#1\right]}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Vectores
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Vectores canónicos
+\html@def\veci{\mathbf{i}}
+\html@def\vecj{\mathbf{j}}
+\html@def\veck{\mathbf{k}}
+%%  Y ¡se acabó!
+\endinput
+%%
+%% End of file `aleph-moodle.sty'.
