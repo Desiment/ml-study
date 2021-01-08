@@ -3,7 +3,7 @@ import pandas as pd
 
 # PARSE COVID DATA
 # Base set --- https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide
-def ParseCovidDataset(raw_data_path = "data/COVID19.csv", country_name = "countryterritoryCode", cases_mode = "dayily", cases_name = "cases"):
+def ParseCovidDataset(raw_data_path = "../data/COVID19.csv", country_name = "countryterritoryCode", cases_mode = "dayily", cases_name = "cases"):
 
     raw_covid_data = pd.read_csv(raw_data_path)
     raw_covid_data.rename(columns = {cases_name : "cases"}, inplace = True)
@@ -44,15 +44,18 @@ def ParseCovidDataset(raw_data_path = "data/COVID19.csv", country_name = "countr
     covid_data = pd.DataFrame({"ISO-code" : countries, "rfactor" : rfactor})
     return covid_data
 
-def AddParameter(df, parameter_path):
+def AddParameter(df, parameter_name):
+    parameter_path = "../data/" + parameter_name + ".csv"
     parameter_data = pd.read_csv(parameter_path)
     del parameter_data["Country"]
-    
+    mx = parameter_data[parameter_name].max()
+    mn = parameter_data[parameter_name].min()
+    parameter_data[parameter_name] = parameter_data[parameter_name].map(lambda x: (x - mn)/(mx - mn))
     df = pd.merge(df, parameter_data, on="ISO-code")
     return df
 
 data = ParseCovidDataset()
-data = AddParameter(data, "data/Sex-ratio.csv")
-data = AddParameter(data, "data/Median age.csv")
-data = AddParameter(data, "data/Urbanization rate.csv")
-data.to_csv("data/clear_data.csv")
+data = AddParameter(data, "Sex-ratio")
+data = AddParameter(data, "Median age")
+data = AddParameter(data, "Urbanization rate")
+data.to_csv("../data/clear_data.csv")
