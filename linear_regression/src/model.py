@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import sklearn.linear_model as lm
+from joblib import dump
 
 data = pd.read_csv("../data/clear_data.csv")
 X = data[["Median age", "Sex-ratio", "Urbanization rate"]]
