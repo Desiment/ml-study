@@ -8,24 +8,8 @@ import matplotlib.pyplot as plt
 k = 3
 tests = 10
 
+FILENAME = "../data/Iris.csv"
 data = []
-FILENAME = '../Iris.csv'
-
-data = pd.read_csv('../Iris.csv')
-fig, axs = plt.subplots(4, 4)
-names = ['SepalWidthCm', 'SepalLengthCm', 'PetalLengthCm', 'PetalWidthCm']
-colors = {
-    'Iris-setosa': 'red',
-    'Iris-versicolor': 'blue',
-    'Iris-virginica': 'green'
-}
-for i in range(4):
-    for j in range(4):
-        for k, row in data.iterrows():
-                axs[i, j].scatter(float(row[names[i]]), float(row[names[j]]), c=colors[row['Species']])
-
-plt.show()
-
 with open(FILENAME) as file:
     reader = csv.DictReader(file)
     for row in reader:
